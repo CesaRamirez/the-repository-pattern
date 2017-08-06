@@ -16,5 +16,7 @@ class TopicController extends Controller
     public function index()
     {
         $topics = $this->topics->all();
+
+        dd($topics);
     }
 }
