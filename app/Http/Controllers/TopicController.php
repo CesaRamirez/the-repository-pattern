@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\Contracts\TopicRepository;
+use App\Repositories\Eloquent\Criteria\IsLive;
 use App\Repositories\Eloquent\Criteria\LatestFirst;
 
 class TopicController extends Controller
@@ -16,7 +17,11 @@ class TopicController extends Controller
 
     public function index()
     {
-        $topics = $this->topics->withCriteria(new LatestFirst())->all();
+        $topics = $this->topics
+                       ->withCriteria(new LatestFirst(),
+                                      new IsLive()
+                                      )
+                       ->all();
 
         return view('topics.index', compact('topics'));
     }
