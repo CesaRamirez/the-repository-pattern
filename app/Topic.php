@@ -12,4 +12,9 @@ class Topic extends Model
     protected $fillable = ['title', 'slug', 'user_id', 'live'];
 
     protected $dates = ['created_at', 'published_at'];
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }
