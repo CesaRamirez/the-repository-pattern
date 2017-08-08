@@ -11,7 +11,7 @@
                     <ul class="list-group">
                         @foreach ($topics as $topic)
                             <li class="list-group-item">
-                                {{ $topic->title }} <strong>{{ $topic->created_at->diffForHumans() }}</strong> <hr>
+                                <a href="/topics/{{ $topic->slug }}">{{ $topic->title }}</a> <strong>{{ $topic->created_at->diffForHumans() }}</strong> <hr>
                                     @foreach ($topic->posts as $post)
                                         <p>{{ $post->body }} - {{ $post->user->name }}</p>
                                     @endforeach
