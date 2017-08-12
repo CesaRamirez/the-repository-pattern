@@ -36,7 +36,7 @@ class TopicController extends Controller
                       ->withCriteria([
                           new EagerLoad(['posts', 'posts.user']),
                       ])
-                      ->findBySlug($slug);
+                      ->find(100000);
 
         return view('topics.show', compact('topic'));
     }
