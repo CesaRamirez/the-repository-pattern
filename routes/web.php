@@ -6,6 +6,7 @@ $router->get('/', function () {
 });
 
 $router->resource('topics', 'TopicController');
+$router->resource('addresses', 'AddressController');
 
 Auth::routes();
 
