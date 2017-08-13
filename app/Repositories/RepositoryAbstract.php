@@ -36,7 +36,7 @@ abstract class RepositoryAbstract implements RepositoryInterface, CriteriaInterf
     {
         $model = $this->entity->find($id);
 
-        throw (new ModelNotFoundException)->setModel(
+        throw (new ModelNotFoundException())->setModel(
             get_class($this->entity->getModel()), $id
         );
 
@@ -51,8 +51,8 @@ abstract class RepositoryAbstract implements RepositoryInterface, CriteriaInterf
     public function findWhereFirst($column, $value)
     {
         $model =  $this->entity->where($column, $value)->firstOrFail();
-        
-        throw (new ModelNotFoundException)->setModel(
+
+        throw (new ModelNotFoundException())->setModel(
             get_class($this->entity->getModel())
         );
 
