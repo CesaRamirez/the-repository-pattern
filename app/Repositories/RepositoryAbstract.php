@@ -36,9 +36,11 @@ abstract class RepositoryAbstract implements RepositoryInterface, CriteriaInterf
     {
         $model = $this->entity->find($id);
 
-        throw (new ModelNotFoundException())->setModel(
+        if (! isset($model)) {
+            throw (new ModelNotFoundException())->setModel(
             get_class($this->entity->getModel()), $id
-        );
+          );
+        }
 
         return $model;
     }
@@ -52,9 +54,11 @@ abstract class RepositoryAbstract implements RepositoryInterface, CriteriaInterf
     {
         $model =  $this->entity->where($column, $value)->firstOrFail();
 
-        throw (new ModelNotFoundException())->setModel(
+        if (! isset($model)) {
+            throw (new ModelNotFoundException())->setModel(
             get_class($this->entity->getModel())
-        );
+          );
+        }
 
         return $model;
     }

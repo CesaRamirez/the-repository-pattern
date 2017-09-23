@@ -5,9 +5,12 @@ $router->get('/', function () {
     return view('welcome');
 });
 
-$router->resource('topics', 'TopicController');
-$router->resource('addresses', 'AddressController');
 
-Auth::routes();
+$router->auth();
 
-Route::get('/home', 'HomeController@index')->name('home');
+$router->middleware('auth')->group(function ($router) {
+    $router->get('/home', 'HomeController@index')->name('home');
+    $router->resource('topics', 'TopicController')->except('show');
+    $router->get('topics/{slug}', 'TopicController@show')->name('topics.show');
+    $router->resource('addresses', 'AddressController');
+});
