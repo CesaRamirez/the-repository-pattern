@@ -9,9 +9,20 @@ use Illuminate\Http\Request;
 
 class AddressController extends Controller
 {
+    /**
+     * [protected description].
+     *
+     * @var [type]
+     */
     protected $address;
     protected $user;
 
+    /**
+     * Constructor Addres Controller.
+     *
+     * @param AddressRepository $address [description]
+     * @param UserRepository    $user    [description]
+     */
     public function __construct(
         AddressRepository $address,
         UserRepository $user
@@ -96,6 +107,6 @@ class AddressController extends Controller
      */
     public function destroy(Address $address)
     {
-        $this->user->deleteAddress(auth()->id(),$address->id);
+        $this->user->deleteAddress(auth()->id(), $address->id);
     }
 }
