@@ -9,13 +9,26 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 abstract class RepositoryAbstract implements RepositoryInterface, CriteriaInterface
 {
+    /**
+     * variable entity.
+     *
+     * @var \Illuminate\Database\Eloquent\Model
+     */
     protected $entity;
 
+    /**
+     * Constructor Repository abstract.
+     */
     public function __construct()
     {
         $this->entity = $this->resolveEntity();
     }
 
+    /**
+     * Filters for better search.
+     *
+     * @param $criteria
+     */
     public function withCriteria(...$criteria)
     {
         $criteria = array_flatten($criteria);
